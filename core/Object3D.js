@@ -22,15 +22,13 @@ const _xAxis = /*@__PURE__*/ new Vector3( 1, 0, 0 );
 const _yAxis = /*@__PURE__*/ new Vector3( 0, 1, 0 );
 const _zAxis = /*@__PURE__*/ new Vector3( 0, 0, 1 );
 
-const _gg_zAxis = /*@__PURE__*/ new Vector3( 0, 0, 1 ); //added
-
 const _addedEvent = { type: 'added' };
 const _removedEvent = { type: 'removed' };
 
 class Object3D extends EventDispatcher {
 
 	constructor() {
-console.log("new Object3d 33");
+//console.log("new Object3d 33");
 		super();
 
 		this.isObject3D = true;
@@ -53,7 +51,7 @@ console.log("new Object3d 33");
 		const scale = new Vector3( 1, 1, 1 );
 
 		function onRotationChange() {
-
+			//console.log("rotation changed");
 			quaternion.setFromEuler( rotation, false );
 
 		}
@@ -179,7 +177,7 @@ console.log("new Object3d 33");
 
 		// rotate object on axis in object space
 		// axis is assumed to be normalized
-
+		//console.log("we have rotated some how");
 		_q1.setFromAxisAngle( axis, angle );
 
 		this.quaternion.multiply( _q1 );
@@ -193,7 +191,7 @@ console.log("new Object3d 33");
 		// rotate object on axis in world space
 		// axis is assumed to be normalized
 		// method assumes no rotated parent
-
+		//console.log("we have rotated some how");
 		_q1.setFromAxisAngle( axis, angle );
 
 		this.quaternion.premultiply( _q1 );
@@ -203,19 +201,19 @@ console.log("new Object3d 33");
 	}
 
 	rotateX( angle ) {
-
+			
 		return this.rotateOnAxis( _xAxis, angle );
 
 	}
 
 	rotateY( angle ) {
-
+		
 		return this.rotateOnAxis( _yAxis, angle );
 
 	}
 
 	rotateZ( angle ) {
-
+		
 		return this.rotateOnAxis( _zAxis, angle );
 
 	}
@@ -227,7 +225,7 @@ console.log("new Object3d 33");
 		
 		_v1.copy( axis ).applyQuaternion( this.quaternion );
 		
-	//_v1.y = 0
+	_v1.y = 0
 		this.position.add( _v1.multiplyScalar( distance ) ); 
 
 		return this;
@@ -241,14 +239,13 @@ console.log("new Object3d 33");
 	}
 
 	translateY( distance ) {
-		console.log("translating on y - OBject3d 243")
-		return this.translateOnAxis( _yAxis, distance );
+	//	console.log("translating on y - OBject3d 243")
+	return this.translateOnAxis( _yAxis, distance );
 
 	}
 
 	translateZ( distance ) {
-        console.log("translate on z - Object3D 249");
-		console.log(_zAxis);
+       // console.log("translate on z - Object3D 249");
 		// return this.translateOnAxis( _zAxis, distance );
        // return this.translateOnAxis( _gg_zAxis, distance );
        return this.translateOnAxis( new Vector3( 0, 0, 1 ), distance );
@@ -273,7 +270,7 @@ console.log("new Object3d 33");
 	lookAt( x, y, z ) {
 
 		// This method does not support objects having non-uniformly-scaled parent(s)
-
+		
 		if ( x.isVector3 ) {
 
 			_target.copy( x );
@@ -293,11 +290,11 @@ console.log("new Object3d 33");
 		if ( this.isCamera || this.isLight ) {
 
 			_m1.lookAt( _position, _target, this.up );
-
+			// console.log("295 object 3d _target");
 		} else {
 
 			_m1.lookAt( _target, _position, this.up );
-
+			//console.log("299 object 3d _target");
 		}
 
 		this.quaternion.setFromRotationMatrix( _m1 );

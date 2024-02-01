@@ -7,7 +7,7 @@ class Camera extends Object3D {
 	constructor() {
 
 		super();
-		console.log("new Camera 10");
+		//console.log("new Camera 10");
 		this.isCamera = true;
 
 		this.type = 'Camera';

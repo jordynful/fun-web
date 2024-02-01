@@ -8,7 +8,7 @@ class PerspectiveCamera extends Camera {
 		super();
 
 		this.isPerspectiveCamera = true;
-console.log("new perspective camera 11");
+//console.log("new perspective camera 11");
 		this.type = 'PerspectiveCamera';
 
 		this.fov = fov;
